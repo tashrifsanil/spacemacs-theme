@@ -46,11 +46,6 @@
   :type 'boolean
   :group 'spacemacs-theme)
 
-(defcustom spacemacs-theme-org-agenda-height t
-  "Use varying text heights for org agenda."
-  :type 'boolean
-  :group 'spacemacs-theme)
-
 (defcustom spacemacs-theme-org-height t
   "Use varying text heights for org headings."
   :type 'boolean
@@ -80,46 +75,46 @@
         ;;                                                          GUI       TER                           GUI       TER
         ;; generic
         (act1          (if (eq variant 'dark) (if (true-color-p) "#222226" "#121212") (if (true-color-p) "#e7e5eb" "#d7dfff")))
-        (act2          (if (eq variant 'dark) (if (true-color-p) "#5d4d7a" "#444444") (if (true-color-p) "#d3d3e7" "#afafd7")))
+        (act2          (if (eq variant 'dark) (if (true-color-p) "#2C3237" "#444444") (if (true-color-p) "#d3d3e7" "#afafd7")))
         (base          (if (eq variant 'dark) (if (true-color-p) "#b2b2b2" "#b2b2b2") (if (true-color-p) "#655370" "#5f5f87")))
-        (base-dim      (if (eq variant 'dark) (if (true-color-p) "#686868" "#585858") (if (true-color-p) "#a094a2" "#afafd7")))
-        (bg1           (if (eq variant 'dark) (if (true-color-p) "#292b2e" "#262626") (if (true-color-p) "#fbf8ef" "#ffffff")))
+        (base-dim      (if (eq variant 'dark) (if (true-color-p) "#545557" "#585858") (if (true-color-p) "#cdc5c8" "#afafd7")))
+        (bg1           (if (eq variant 'dark) (if (true-color-p) "#1A1D21" "#262626") (if (true-color-p) "#fbf8ef" "#ffffff")))
         (bg2           (if (eq variant 'dark) (if (true-color-p) "#212026" "#1c1c1c") (if (true-color-p) "#efeae9" "#e4e4e4")))
         (bg3           (if (eq variant 'dark) (if (true-color-p) "#100a14" "#121212") (if (true-color-p) "#e3dedd" "#d0d0d0")))
         (bg4           (if (eq variant 'dark) (if (true-color-p) "#0a0814" "#080808") (if (true-color-p) "#d2ceda" "#bcbcbc")))
         (border        (if (eq variant 'dark) (if (true-color-p) "#5d4d7a" "#111111") (if (true-color-p) "#b3b9be" "#b3b9be")))
         (cblk          (if (eq variant 'dark) (if (true-color-p) "#cbc1d5" "#b2b2b2") (if (true-color-p) "#655370" "#5f5f87")))
         (cblk-bg       (if (eq variant 'dark) (if (true-color-p) "#2f2b33" "#262626") (if (true-color-p) "#e8e3f0" "#ffffff")))
-        (cblk-ln       (if (eq variant 'dark) (if (true-color-p) "#827591" "#af5faf") (if (true-color-p) "#9380b2" "#af5fdf")))
+        (cblk-ln       (if (eq variant 'dark) (if (true-color-p) "#827591" "#827591") (if (true-color-p) "#9380b2" "#af5fdf")))
         (cblk-ln-bg    (if (eq variant 'dark) (if (true-color-p) "#373040" "#333333") (if (true-color-p) "#ddd8eb" "#dfdfff")))
-        (cursor        (if (eq variant 'dark) (if (true-color-p) "#e3dedd" "#d0d0d0") (if (true-color-p) "#100a14" "#121212")))
-        (const         (if (eq variant 'dark) (if (true-color-p) "#a45bad" "#d75fd7") (if (true-color-p) "#4e3163" "#8700af")))
-        (comment       (if (eq variant 'dark) (if (true-color-p) "#2aa1ae" "#008787") (if (true-color-p) "#2aa1ae" "#008787")))
-        (comment-bg    (if (eq variant 'dark) (if (true-color-p) "#292e34" "#262626") (if (true-color-p) "#ecf3ec" "#ffffff")))
-        (comp          (if (eq variant 'dark) (if (true-color-p) "#c56ec3" "#d75fd7") (if (true-color-p) "#6c4173" "#8700af")))
-        (err           (if (eq variant 'dark) (if (true-color-p) "#e0211d" "#e0211d") (if (true-color-p) "#e0211d" "#e0211d")))
-        (func          (if (eq variant 'dark) (if (true-color-p) "#bc6ec5" "#d75fd7") (if (true-color-p) "#6c3163" "#8700af")))
+        (cursor        (if (eq variant 'dark) (if (true-color-p) "#D68111" "#D68111") (if (true-color-p) "#100a14" "#121212")))
+        (const         (if (eq variant 'dark) (if (true-color-p) "#008BA2" "#008BA2") (if (true-color-p) "#4e3163" "#8700af")))
+        (comment       (if (eq variant 'dark) (if (true-color-p) "#D6003C" "#D6003C") (if (true-color-p) "#2aa1ae" "#008787")))
+        (comment-bg    (if (eq variant 'dark) (if (true-color-p) "#1A1D21" "#262626") (if (true-color-p) "#ecf3ec" "#ffffff")))
+        (comp          (if (eq variant 'dark) (if (true-color-p) "#667684" "#667684") (if (true-color-p) "#6c4173" "#8700af")))
+        (err           (if (eq variant 'dark) (if (true-color-p) "#FF0000" "#e0211d") (if (true-color-p) "#e0211d" "#e0211d")))
+        (func          (if (eq variant 'dark) (if (true-color-p) "#BFC6CC" "#BFC6CC") (if (true-color-p) "#6c3163" "#8700af")))
         (head1         (if (eq variant 'dark) (if (true-color-p) "#4f97d7" "#268bd2") (if (true-color-p) "#3a81c3" "#268bd2")))
         (head1-bg      (if (eq variant 'dark) (if (true-color-p) "#293239" "#262626") (if (true-color-p) "#edf1ed" "#ffffff")))
         (head2         (if (eq variant 'dark) (if (true-color-p) "#2d9574" "#2aa198") (if (true-color-p) "#2d9574" "#2aa198")))
         (head2-bg      (if (eq variant 'dark) (if (true-color-p) "#293235" "#262626") (if (true-color-p) "#edf2e9" "#ffffff")))
         (head3         (if (eq variant 'dark) (if (true-color-p) "#67b11d" "#67b11d") (if (true-color-p) "#67b11d" "#5faf00")))
         (head3-bg      (if (eq variant 'dark) (if (true-color-p) "#293235" "#262626") (if (true-color-p) "#edf2e9" "#ffffff")))
-        (head4         (if (eq variant 'dark) (if (true-color-p) "#b1951d" "#875f00") (if (true-color-p) "#b1951d" "#875f00")))
+        (head4         (if (eq variant 'dark) (if (true-color-p) "#b1951d" "#b1951d") (if (true-color-p) "#b1951d" "#875f00")))
         (head4-bg      (if (eq variant 'dark) (if (true-color-p) "#32322c" "#262626") (if (true-color-p) "#f6f1e1" "#ffffff")))
         (highlight     (if (eq variant 'dark) (if (true-color-p) "#444155" "#444444") (if (true-color-p) "#d3d3e7" "#d7d7ff")))
-        (keyword       (if (eq variant 'dark) (if (true-color-p) "#4f97d7" "#268bd2") (if (true-color-p) "#3a81c3" "#268bd2")))
+        (keyword       (if (eq variant 'dark) (if (true-color-p) "#AF20AF" "#AF20AF") (if (true-color-p) "#3a81c3" "#268bd2")))
         (lnum          (if (eq variant 'dark) (if (true-color-p) "#44505c" "#444444") (if (true-color-p) "#a8a8bf" "#af87af")))
         (mat           (if (eq variant 'dark) (if (true-color-p) "#86dc2f" "#86dc2f") (if (true-color-p) "#ba2f59" "#af005f")))
         (meta          (if (eq variant 'dark) (if (true-color-p) "#9f8766" "#af875f") (if (true-color-p) "#da8b55" "#df5f5f")))
         (str           (if (eq variant 'dark) (if (true-color-p) "#2d9574" "#2aa198") (if (true-color-p) "#2d9574" "#2aa198")))
         (suc           (if (eq variant 'dark) (if (true-color-p) "#86dc2f" "#86dc2f") (if (true-color-p) "#42ae2c" "#00af00")))
         (ttip          (if (eq variant 'dark) (if (true-color-p) "#9a9aba" "#888888") (if (true-color-p) "#8c799f" "#5f5f87")))
-        (ttip-sl       (if (eq variant 'dark) (if (true-color-p) "#5e5079" "#333333") (if (true-color-p) "#c8c6dd" "#afafff")))
-        (ttip-bg       (if (eq variant 'dark) (if (true-color-p) "#34323e" "#444444") (if (true-color-p) "#e2e0ea" "#dfdfff")))
-        (type          (if (eq variant 'dark) (if (true-color-p) "#ce537a" "#df005f") (if (true-color-p) "#ba2f59" "#af005f")))
-        (var           (if (eq variant 'dark) (if (true-color-p) "#7590db" "#8787d7") (if (true-color-p) "#715ab1" "#af5fd7")))
-        (war           (if (eq variant 'dark) (if (true-color-p) "#dc752f" "#dc752f") (if (true-color-p) "#dc752f" "#dc752f")))
+        (ttip-sl       (if (eq variant 'dark) (if (true-color-p) "#5e5079" "#5e5079") (if (true-color-p) "#c8c6dd" "#afafff")))
+        (ttip-bg       (if (eq variant 'dark) (if (true-color-p) "#34323e" "#34323e") (if (true-color-p) "#e2e0ea" "#dfdfff")))
+        (type          (if (eq variant 'dark) (if (true-color-p) "#697684" "#697684") (if (true-color-p) "#ba2f59" "#af005f")))
+        (var           (if (eq variant 'dark) (if (true-color-p) "#D68111" "#D68111") (if (true-color-p) "#715ab1" "#af5fd7")))
+        (war           (if (eq variant 'dark) (if (true-color-p) "#9BAF20" "#dc752f") (if (true-color-p) "#dc752f" "#dc752f")))
 
         ;; colors
         (aqua          (if (eq variant 'dark) (if (true-color-p) "#2d9574" "#2aa198") (if (true-color-p) "#2d9574" "#2aa198")))
@@ -279,12 +274,6 @@
 
 ;;;;; eldoc
      `(eldoc-highlight-function-argument ((,class (:foreground ,mat :inherit bold))))
-
-;;;;; elfeed
-     `(elfeed-search-title-face ((,class (:foreground ,base-dim))))
-     `(elfeed-search-unread-title-face ((,class (:foreground ,base))))
-     `(elfeed-search-feed-face ((,class (:foreground ,blue))))
-     `(elfeed-search-tag-face ((,class (:foreground ,func))))
 
 ;;;;; enh-ruby
      `(enh-ruby-string-delimiter-face ((,class (:foreground ,str))))
@@ -550,10 +539,10 @@
 
 ;;;;; org
      `(org-agenda-clocking ((,class (:background ,highlight :foreground ,comp))))
-     `(org-agenda-date ((,class (:foreground ,var :height ,(if spacemacs-theme-org-agenda-height 1.1 1.0)))))
-     `(org-agenda-date-today ((,class (:foreground ,keyword :inherit bold :height ,(if spacemacs-theme-org-agenda-height 1.3 1.0)))))
+     `(org-agenda-date ((,class (:foreground ,var :height ,(if spacemacs-theme-org-height 1.1 1.0)))))
+     `(org-agenda-date-today ((,class (:foreground ,keyword :slant italic :inherit bold :height ,(if spacemacs-theme-org-height 1.3 1.0)))))
      `(org-agenda-date-weekend ((,class (:inherit bold :foreground ,var))))
-     `(org-agenda-done ((,class (:foreground ,suc :height ,(if spacemacs-theme-org-agenda-height 1.2 1.0)))))
+     `(org-agenda-done ((,class (:foreground ,suc :height ,(if spacemacs-theme-org-height 1.2 1.0)))))
      `(org-agenda-structure ((,class (:inherit bold :foreground ,comp))))
      `(org-block ((,class (:background ,cblk-bg :foreground ,cblk))))
      `(org-block-begin-line ((,class (:background ,cblk-ln-bg :foreground ,cblk-ln))))
@@ -585,7 +574,7 @@
      `(org-priority ((,class (:foreground ,war :inherit bold))))
      `(org-quote ((,class (:inherit org-block :slant italic))))
      `(org-scheduled ((,class (:foreground ,comp))))
-     `(org-scheduled-today ((,class (:foreground ,func :height ,(if spacemacs-theme-org-agenda-height 1.2 1.0)))))
+     `(org-scheduled-today ((,class (:foreground ,func :height ,(if spacemacs-theme-org-height 1.2 1.0)))))
      `(org-sexp-date ((,class (:foreground ,base))))
      `(org-special-keyword ((,class (:foreground ,func))))
      `(org-table ((,class (:foreground ,base :background ,head1-bg))))

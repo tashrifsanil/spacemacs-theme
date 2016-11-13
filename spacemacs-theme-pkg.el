@@ -1,1 +1,6 @@
-(define-package "spacemacs-theme" "0.1" "Color theme with a dark and light versions" 'nil :url "https://github.com/nashamri/spacemacs-theme" :keywords '("color" "theme"))
+(define-package "spacemacs-theme" "20160909.445" "Color theme with a dark and light versions" 'nil :keywords
+  '("color" "theme")
+  :url "https://github.com/nashamri/spacemacs-theme")
+;; Local Variables:
+;; no-byte-compile: t
+;; End:
