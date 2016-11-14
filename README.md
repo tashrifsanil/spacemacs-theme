@@ -1,74 +1,41 @@
-# Spacemacs-theme
+# About
 
-[![MELPA](http://melpa.org/packages/spacemacs-theme-badge.svg)](http://melpa.org/#/spacemacs-theme) ![Made with Spacemacs](https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg)
- [![Join the chat at https://gitter.im/nashamri/spacemacs-theme](https://badges.gitter.im/Join%20Chat.svg)] (https://gitter.im/nashamri/spacemacs-theme?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-![spacemacs-theme](/../screenshots/spacemacs-theme.png)
-
-Spacemacs theme is an Emacs color theme that started as a theme for [spacemacs](https://github.com/syl20bnr/spacemacs).
-The theme comes with dark and light variants and it should work well with 256 color terminals. 
+Vital Dark theme is a minimal Emacs color theme that highlights important
+elements of your code, and is meant to be easy on the eyes. It's an attempted clone of the [vital dark](https://atom.io/packages/vital-dark-syntax) syntax theme for emacs. This theme uses [spacemacs-theme](https://atom.io/packages/vital-dark-syntax) as base. There's only a dark variant and it should work 256 color terminals.
 
 ## Screenshots
 
-![spacemacs-theme-preview](/../screenshots/preview.png)
-
-## Highlights
-
-The theme has good support for org mode.
-
-![spacemacs-theme-org](/../screenshots/org.png)
-
-## Installation
-
-You can install it from MELPA by:
-
-```
-M-x package-install RET spacemacs-theme
-```
-
-## Supported modes
-
-Some of the supported modes are:
-
-* company
-* ein
-* erc
-* gnus
-* helm
-* ido
-* info
-* magit
-* neotree
-* org
-* and others :) more are coming!
+![alt tag](https://github.com/tashrifsanil/vital-dark-theme/blob/master/Screenshots/vital-dark-screenshot1.png)
+![alt tag](https://github.com/tashrifsanil/vital-dark-theme/blob/master/Screenshots/vital-dark-screenshot2.png)
+![alt tag](https://github.com/tashrifsanil/vital-dark-theme/blob/master/Screenshots/vital-dark-screenshot3.png)
 
 ## Customizations
 
 The theme has some options that can be tweaked via `M-x customize`:
 
-* `spacemacs-theme-comment-bg`:
+* `vital-dark-theme-comment-bg`:
 
 This toggles a background color for the comment lines.
 
-* `spacemacs-theme-org-agenda-height`:
+* `vital-dark-theme-org-agenda-height`:
 
 This toggles the use of varying org agenda heights.
 
-* `spacemacs-theme-org-height`:
+* `vital-dark-theme-org-height`:
 
 This toggles the use of varying org headings heights.
 
-* `spacemacs-theme-org-highlight`:
+* `vital-dark-theme-org-highlight`:
 
 This toggles highlighting of org headings.
 
-* `spacemacs-theme-custom-colors`:
+* `vital-dark-theme-custom-colors`:
 
-This allows for specifying a list of custom colors to override spacemacs theme colors. More details in the next section.
+This allows for specifying a list of custom colors to override vital-dark theme colors. More details in the next section.
 
 ### Override theme's colors
 
-The theme can be customized by overriding one of the theme local variables by setting a list in the `spacemacs-theme-custom-colors` variable.
+The theme can be customized by overriding one of the theme local variables by setting a list in the `vital-dark-theme-custom-colors` variable.
 Here's a list of all the local variables and roles:
 
 | var        | role                                                                                              |
@@ -89,12 +56,12 @@ Here's a list of all the local variables and roles:
 | cursor     | The cursor/point color.                                                                           |
 | const      | A constant.                                                                                       |
 | comment    | A comment.                                                                                        |
-| comment-bg | The background color of a comment. To disable this, `customize` `spacemacs-theme-comment-bg`.     |
+| comment-bg | The background color of a comment. To disable this, `customize` `vital-dark-theme-comment-bg`.     |
 | comp       | A complementary color.                                                                            |
 | err        | errors.                                                                                           |
 | func       | functions.                                                                                        |
 | head1      | Level 1 of a heading. Used in org's headings.                                                     |
-| head1-bg   | The background of level 2 headings. To disable this, `customize` `spacemacs-theme-org-highlight`. |
+| head1-bg   | The background of level 2 headings. To disable this, `customize` `vital-dark-theme-org-highlight`. |
 | head2      | Level 2 headings.                                                                                 |
 | head2-bg   | Level 2 headings background.                                                                      |
 | head3      | Level 3 headings.                                                                                 |
@@ -115,42 +82,5 @@ Here's a list of all the local variables and roles:
 | var        | A variable color.                                                                                 |
 | war        | A warning color.                                                                                  |
 
-
-There is also explicit colors variables that can be customized:
-
-* aqua
-* aqua-bg
-* green
-* green-bg
-* green-bg-s
-* cyan
-* red
-* red-bg
-* red-bg-s
-* blue
-* blue-bg
-* violet
-* yellow
-* yellow-bg
-
-The `green` and `red` colors have two background versions. The `green-bg` and  `red-bg` are normal light background colors.
-The `green-bg-s` and `red-bg-s` are a stronger version and are used in `ediff` and places were text is added or deleted.
-
-Here are some screenshots of the various variables:
-
-![spacemacs-theme-guide-generic](/../screenshots/guide-generic.png)
-
-![spacemacs-theme-guide-org](/../screenshots/guide-org.png)
-
-![spacemacs-theme-guide-extra](/../screenshots/guide-extra.png)
-
-If you are using [spacemacs](https://github.com/syl20bnr/spacemacs), you can put this snippet in your `dotspacemacs/user-init` to override these colors:
-
-```
-  (custom-set-variables '(spacemacs-theme-custom-colors
-                          '((act1 . "#ff0000")
-                            (act2 . "#0000ff")
-                            (base . "#ffffff"))))
-```
-
-This will override `act1`, `act1` and `base` to use the specified colors.
+# Note
+Further tweaks are on the way

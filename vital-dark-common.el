@@ -1,15 +1,15 @@
-;;; spacemacs-common.el --- Color theme with a dark and light versions.
+;;; vital-dark-common.el --- Color theme with a dark and light versions.
 
-;; Copyright (C) 2015-2016 Nasser Alshammari
+;; Copyright (C) 2015-2016 Tashrif Sanil
 
-;; Author: Nasser Alshammari
-;; URL: <https://github.com/nashamri/spacemacs-theme>
+;; Author: Tashrif Sanil
+;; URL: <https://github.com/tashrifsanil/vital-dark-theme>
 ;;
 ;; Version: 0.1
 ;; Keywords: color, theme
 ;; Package-Requires: ((emacs "24"))
 
-;; Initially created with the help of emacs-theme-generator, <https://github.com/mswift42/theme-creator>.
+;; Based off of spacemacs-dark-theme <https://github.com/nashamri/spacemacs-theme>.
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -28,109 +28,111 @@
 
 ;;; Commentary:
 
-;; This is a color theme for spacemacs <https://github.com/syl20bnr/spacemacs>.
-;; It comes with two versions, dark and light and should work well in
-;; a 256 color terminal.
-
+;; An Emacs color theme that tries to mimic the vital-dark-theme for atom editor <https://atom.io/themes/vital-dark-syntax>.
+;; It should work well in a 256 color terminal.
 ;;; Code:
 
 (defmacro dyn-let (varlist fn setfaces setvars)
+  "Macro to create a list of colors, takes parameters (VARLIST FN SETFACES SETVARS)."
   (list 'let (append varlist (funcall fn)) setfaces setvars))
 
-(defgroup spacemacs-theme nil
+(defgroup vital-dark-theme nil
   "Spacemacs-theme options."
   :group 'faces)
 
-(defcustom spacemacs-theme-comment-bg t
+(defcustom vital-dark-theme-comment-bg t
   "Use a background for comment lines."
   :type 'boolean
-  :group 'spacemacs-theme)
+  :group 'vital-dark-theme)
 
-(defcustom spacemacs-theme-org-height t
+(defcustom vital-dark-theme-org-height t
   "Use varying text heights for org headings."
   :type 'boolean
-  :group 'spacemacs-theme)
+  :group 'vital-dark-theme)
 
-(defcustom spacemacs-theme-org-highlight nil
+(defcustom vital-dark-theme-org-highlight nil
   "Highlight org headings."
   :type 'boolean
-  :group 'spacemacs-theme)
+  :group 'vital-dark-theme)
 
-(defcustom spacemacs-theme-custom-colors nil
-  "Specify a list of custom colors"
+(defcustom vital-dark-theme-custom-colors nil
+  "Specify a list of custom colors."
   :type 'alist
-  :group 'spacemacs-theme)
+  :group 'vital-dark-theme)
 
 (defun true-color-p ()
+  "Function used to determine if Emacs is being run on GUI or on terminal."
   (or
    (display-graphic-p)
    (= (tty-display-color-cells) 16777216)))
 
 (defun custom-colors-override ()
+  "A function for the user to override default colors of the theme."
   (mapcar (lambda (x) (list (car x) (cdr x)))
-          spacemacs-theme-custom-colors))
+          vital-dark-theme-custom-colors))
 
-(defun create-spacemacs-theme (variant theme-name)
-  (dyn-let ((class '((class color) (min-colors 89))) ;;              ~~ Dark ~~                              ~~ Light ~~
-        ;;                                                          GUI       TER                           GUI       TER
+(defun create-vital-dark-theme (variant theme-name)
+  "Essentially responsible for creating the theme.  Depending on (VARIANT THEME-NAME), the function would create a light or dark theme.  Currently there is no light variant but it's for future functionality."
+  (dyn-let ((class '((class color) (min-colors 89))) ;;              ~~ Dark ~~
+        ;;                                                          GUI       TER
         ;; generic
-        (act1          (if (eq variant 'dark) (if (true-color-p) "#222226" "#121212") (if (true-color-p) "#e7e5eb" "#d7dfff")))
-        (act2          (if (eq variant 'dark) (if (true-color-p) "#2C3237" "#444444") (if (true-color-p) "#d3d3e7" "#afafd7")))
-        (base          (if (eq variant 'dark) (if (true-color-p) "#b2b2b2" "#b2b2b2") (if (true-color-p) "#655370" "#5f5f87")))
-        (base-dim      (if (eq variant 'dark) (if (true-color-p) "#545557" "#585858") (if (true-color-p) "#cdc5c8" "#afafd7")))
-        (bg1           (if (eq variant 'dark) (if (true-color-p) "#1A1D21" "#262626") (if (true-color-p) "#fbf8ef" "#ffffff")))
-        (bg2           (if (eq variant 'dark) (if (true-color-p) "#212026" "#1c1c1c") (if (true-color-p) "#efeae9" "#e4e4e4")))
-        (bg3           (if (eq variant 'dark) (if (true-color-p) "#100a14" "#121212") (if (true-color-p) "#e3dedd" "#d0d0d0")))
-        (bg4           (if (eq variant 'dark) (if (true-color-p) "#0a0814" "#080808") (if (true-color-p) "#d2ceda" "#bcbcbc")))
-        (border        (if (eq variant 'dark) (if (true-color-p) "#5d4d7a" "#111111") (if (true-color-p) "#b3b9be" "#b3b9be")))
-        (cblk          (if (eq variant 'dark) (if (true-color-p) "#cbc1d5" "#b2b2b2") (if (true-color-p) "#655370" "#5f5f87")))
-        (cblk-bg       (if (eq variant 'dark) (if (true-color-p) "#2f2b33" "#262626") (if (true-color-p) "#e8e3f0" "#ffffff")))
-        (cblk-ln       (if (eq variant 'dark) (if (true-color-p) "#827591" "#827591") (if (true-color-p) "#9380b2" "#af5fdf")))
-        (cblk-ln-bg    (if (eq variant 'dark) (if (true-color-p) "#373040" "#333333") (if (true-color-p) "#ddd8eb" "#dfdfff")))
-        (cursor        (if (eq variant 'dark) (if (true-color-p) "#D68111" "#D68111") (if (true-color-p) "#100a14" "#121212")))
-        (const         (if (eq variant 'dark) (if (true-color-p) "#008BA2" "#008BA2") (if (true-color-p) "#4e3163" "#8700af")))
-        (comment       (if (eq variant 'dark) (if (true-color-p) "#D6003C" "#D6003C") (if (true-color-p) "#2aa1ae" "#008787")))
-        (comment-bg    (if (eq variant 'dark) (if (true-color-p) "#1A1D21" "#262626") (if (true-color-p) "#ecf3ec" "#ffffff")))
-        (comp          (if (eq variant 'dark) (if (true-color-p) "#667684" "#667684") (if (true-color-p) "#6c4173" "#8700af")))
-        (err           (if (eq variant 'dark) (if (true-color-p) "#FF0000" "#e0211d") (if (true-color-p) "#e0211d" "#e0211d")))
-        (func          (if (eq variant 'dark) (if (true-color-p) "#BFC6CC" "#BFC6CC") (if (true-color-p) "#6c3163" "#8700af")))
-        (head1         (if (eq variant 'dark) (if (true-color-p) "#4f97d7" "#268bd2") (if (true-color-p) "#3a81c3" "#268bd2")))
-        (head1-bg      (if (eq variant 'dark) (if (true-color-p) "#293239" "#262626") (if (true-color-p) "#edf1ed" "#ffffff")))
-        (head2         (if (eq variant 'dark) (if (true-color-p) "#2d9574" "#2aa198") (if (true-color-p) "#2d9574" "#2aa198")))
-        (head2-bg      (if (eq variant 'dark) (if (true-color-p) "#293235" "#262626") (if (true-color-p) "#edf2e9" "#ffffff")))
-        (head3         (if (eq variant 'dark) (if (true-color-p) "#67b11d" "#67b11d") (if (true-color-p) "#67b11d" "#5faf00")))
-        (head3-bg      (if (eq variant 'dark) (if (true-color-p) "#293235" "#262626") (if (true-color-p) "#edf2e9" "#ffffff")))
-        (head4         (if (eq variant 'dark) (if (true-color-p) "#b1951d" "#b1951d") (if (true-color-p) "#b1951d" "#875f00")))
-        (head4-bg      (if (eq variant 'dark) (if (true-color-p) "#32322c" "#262626") (if (true-color-p) "#f6f1e1" "#ffffff")))
-        (highlight     (if (eq variant 'dark) (if (true-color-p) "#444155" "#444444") (if (true-color-p) "#d3d3e7" "#d7d7ff")))
-        (keyword       (if (eq variant 'dark) (if (true-color-p) "#AF20AF" "#AF20AF") (if (true-color-p) "#3a81c3" "#268bd2")))
-        (lnum          (if (eq variant 'dark) (if (true-color-p) "#44505c" "#444444") (if (true-color-p) "#a8a8bf" "#af87af")))
-        (mat           (if (eq variant 'dark) (if (true-color-p) "#86dc2f" "#86dc2f") (if (true-color-p) "#ba2f59" "#af005f")))
-        (meta          (if (eq variant 'dark) (if (true-color-p) "#9f8766" "#af875f") (if (true-color-p) "#da8b55" "#df5f5f")))
-        (str           (if (eq variant 'dark) (if (true-color-p) "#2d9574" "#2aa198") (if (true-color-p) "#2d9574" "#2aa198")))
-        (suc           (if (eq variant 'dark) (if (true-color-p) "#86dc2f" "#86dc2f") (if (true-color-p) "#42ae2c" "#00af00")))
-        (ttip          (if (eq variant 'dark) (if (true-color-p) "#9a9aba" "#888888") (if (true-color-p) "#8c799f" "#5f5f87")))
-        (ttip-sl       (if (eq variant 'dark) (if (true-color-p) "#5e5079" "#5e5079") (if (true-color-p) "#c8c6dd" "#afafff")))
-        (ttip-bg       (if (eq variant 'dark) (if (true-color-p) "#34323e" "#34323e") (if (true-color-p) "#e2e0ea" "#dfdfff")))
-        (type          (if (eq variant 'dark) (if (true-color-p) "#697684" "#697684") (if (true-color-p) "#ba2f59" "#af005f")))
-        (var           (if (eq variant 'dark) (if (true-color-p) "#D68111" "#D68111") (if (true-color-p) "#715ab1" "#af5fd7")))
-        (war           (if (eq variant 'dark) (if (true-color-p) "#9BAF20" "#dc752f") (if (true-color-p) "#dc752f" "#dc752f")))
+        (act1          (if (eq variant 'dark) (if (true-color-p) "#222226" "#121212")))
+        (act2          (if (eq variant 'dark) (if (true-color-p) "#2C3237" "#444444")))
+        (base          (if (eq variant 'dark) (if (true-color-p) "#b2b2b2" "#b2b2b2")))
+        (base-dim      (if (eq variant 'dark) (if (true-color-p) "#545557" "#585858")))
+        (bg1           (if (eq variant 'dark) (if (true-color-p) "#1A1D21" "#262626")))
+        (bg2           (if (eq variant 'dark) (if (true-color-p) "#212026" "#1c1c1c")))
+        (bg3           (if (eq variant 'dark) (if (true-color-p) "#100a14" "#121212")))
+        (bg4           (if (eq variant 'dark) (if (true-color-p) "#0a0814" "#080808")))
+        (border        (if (eq variant 'dark) (if (true-color-p) "#2C3237" "#2C3237")))
+        (cblk          (if (eq variant 'dark) (if (true-color-p) "#cbc1d5" "#b2b2b2")))
+        (cblk-bg       (if (eq variant 'dark) (if (true-color-p) "#2f2b33" "#262626")))
+        (cblk-ln       (if (eq variant 'dark) (if (true-color-p) "#827591" "#827591")))
+        (cblk-ln-bg    (if (eq variant 'dark) (if (true-color-p) "#373040" "#333333")))
+        (cursor        (if (eq variant 'dark) (if (true-color-p) "#D68111" "#D68111")))
+        (const         (if (eq variant 'dark) (if (true-color-p) "#008BA2" "#008BA2")))
+        (comment       (if (eq variant 'dark) (if (true-color-p) "#D6003C" "#D6003C")))
+        (comment-bg    (if (eq variant 'dark) (if (true-color-p) "#1A1D21" "#262626")))
+        (comp          (if (eq variant 'dark) (if (true-color-p) "#667684" "#667684")))
+        (err           (if (eq variant 'dark) (if (true-color-p) "#FF0000" "#e0211d")))
+        (func          (if (eq variant 'dark) (if (true-color-p) "#BFC6CC" "#BFC6CC")))
+        (head1         (if (eq variant 'dark) (if (true-color-p) "#4f97d7" "#268bd2")))
+        (head1-bg      (if (eq variant 'dark) (if (true-color-p) "#293239" "#262626")))
+        (head2         (if (eq variant 'dark) (if (true-color-p) "#2d9574" "#2aa198")))
+        (head2-bg      (if (eq variant 'dark) (if (true-color-p) "#293235" "#262626")))
+        (head3         (if (eq variant 'dark) (if (true-color-p) "#67b11d" "#67b11d")))
+        (head3-bg      (if (eq variant 'dark) (if (true-color-p) "#293235" "#262626")))
+        (head4         (if (eq variant 'dark) (if (true-color-p) "#b1951d" "#b1951d")))
+        (head4-bg      (if (eq variant 'dark) (if (true-color-p) "#32322c" "#262626")))
+        (highlight     (if (eq variant 'dark) (if (true-color-p) "#444155" "#444444")))
+        (keyword       (if (eq variant 'dark) (if (true-color-p) "#AF20AF" "#AF20AF")))
+        (lnum          (if (eq variant 'dark) (if (true-color-p) "#44505c" "#444444")))
+        (mat           (if (eq variant 'dark) (if (true-color-p) "#86dc2f" "#86dc2f")))
+        (meta          (if (eq variant 'dark) (if (true-color-p) "#9f8766" "#af875f")))
+        (str           (if (eq variant 'dark) (if (true-color-p) "#2d9574" "#2aa198")))
+        (suc           (if (eq variant 'dark) (if (true-color-p) "#86dc2f" "#86dc2f")))
+        (ttip          (if (eq variant 'dark) (if (true-color-p) "#9a9aba" "#888888")))
+        (ttip-sl       (if (eq variant 'dark) (if (true-color-p) "#5e5079" "#5e5079")))
+        (ttip-bg       (if (eq variant 'dark) (if (true-color-p) "#34323e" "#34323e")))
+        (type          (if (eq variant 'dark) (if (true-color-p) "#697684" "#697684")))
+        (var           (if (eq variant 'dark) (if (true-color-p) "#D68111" "#D68111")))
+        (war           (if (eq variant 'dark) (if (true-color-p) "#9BAF20" "#dc752f")))
 
         ;; colors
-        (aqua          (if (eq variant 'dark) (if (true-color-p) "#2d9574" "#2aa198") (if (true-color-p) "#2d9574" "#2aa198")))
-        (aqua-bg       (if (eq variant 'dark) (if (true-color-p) "#293235" "#262626") (if (true-color-p) "#edf2e9" "#ffffff")))
-        (green         (if (eq variant 'dark) (if (true-color-p) "#67b11d" "#67b11d") (if (true-color-p) "#67b11d" "#5faf00")))
-        (green-bg      (if (eq variant 'dark) (if (true-color-p) "#293235" "#262626") (if (true-color-p) "#edf2e9" "#ffffff")))
-        (green-bg-s    (if (eq variant 'dark) (if (true-color-p) "#29422d" "#262626") (if (true-color-p) "#dae6d0" "#ffffff")))
-        (cyan          (if (eq variant 'dark) (if (true-color-p) "#28def0" "#00ffff") (if (true-color-p) "#21b8c7" "#008080")))
-        (red           (if (eq variant 'dark) (if (true-color-p) "#f2241f" "#d70000") (if (true-color-p) "#f2241f" "#d70008")))
-        (red-bg        (if (eq variant 'dark) (if (true-color-p) "#3c2a2c" "#262626") (if (true-color-p) "#faede4" "#ffffff")))
-        (red-bg-s      (if (eq variant 'dark) (if (true-color-p) "#512e31" "#262626") (if (true-color-p) "#eed9d2" "#ffffff")))
-        (blue          (if (eq variant 'dark) (if (true-color-p) "#4f97d7" "#268bd2") (if (true-color-p) "#3a81c3" "#268bd2")))
-        (blue-bg       (if (eq variant 'dark) (if (true-color-p) "#293239" "#262626") (if (true-color-p) "#edf1ed" "#d7d7ff")))
-        (magenta       (if (eq variant 'dark) (if (true-color-p) "#a31db1" "#af00df") (if (true-color-p) "#a31db1" "#800080")))
-        (yellow        (if (eq variant 'dark) (if (true-color-p) "#b1951d" "#875f00") (if (true-color-p) "#b1951d" "#875f00")))
-        (yellow-bg     (if (eq variant 'dark) (if (true-color-p) "#32322c" "#262626") (if (true-color-p) "#f6f1e1" "#ffffff")))
+        (aqua          (if (eq variant 'dark) (if (true-color-p) "#2d9574" "#2aa198")))
+        (aqua-bg       (if (eq variant 'dark) (if (true-color-p) "#293235" "#262626")))
+        (green         (if (eq variant 'dark) (if (true-color-p) "#67b11d" "#67b11d")))
+        (green-bg      (if (eq variant 'dark) (if (true-color-p) "#293235" "#262626")))
+        (green-bg-s    (if (eq variant 'dark) (if (true-color-p) "#29422d" "#262626")))
+        (cyan          (if (eq variant 'dark) (if (true-color-p) "#28def0" "#00ffff")))
+        (red           (if (eq variant 'dark) (if (true-color-p) "#f2241f" "#d70000")))
+        (red-bg        (if (eq variant 'dark) (if (true-color-p) "#3c2a2c" "#262626")))
+        (red-bg-s      (if (eq variant 'dark) (if (true-color-p) "#512e31" "#262626")))
+        (blue          (if (eq variant 'dark) (if (true-color-p) "#4f97d7" "#268bd2")))
+        (blue-bg       (if (eq variant 'dark) (if (true-color-p) "#293239" "#262626")))
+        (magenta       (if (eq variant 'dark) (if (true-color-p) "#a31db1" "#af00df")))
+        (yellow        (if (eq variant 'dark) (if (true-color-p) "#b1951d" "#875f00")))
+        (yellow-bg     (if (eq variant 'dark) (if (true-color-p) "#32322c" "#262626")))
         )
 
         custom-colors-override
@@ -147,7 +149,7 @@
      `(eval-sexp-fu-flash ((,class (:background ,suc :foreground ,bg1))))
      `(eval-sexp-fu-flash-error ((,class (:background ,err :foreground ,bg1))))
      `(font-lock-builtin-face ((,class (:foreground ,keyword))))
-     `(font-lock-comment-face ((,class (:foreground ,comment :background ,(when spacemacs-theme-comment-bg comment-bg)))))
+     `(font-lock-comment-face ((,class (:foreground ,comment :background ,(when vital-dark-theme-comment-bg comment-bg)))))
      `(font-lock-constant-face ((,class (:foreground ,const))))
      `(font-lock-doc-face ((,class (:foreground ,comment))))
      `(font-lock-function-name-face ((,class (:foreground ,func :inherit bold))))
@@ -452,12 +454,12 @@
      `(font-latex-italic-face ((,class (:foreground ,keyword :italic t))))
      `(font-latex-match-reference-keywords ((,class (:foreground ,const))))
      `(font-latex-match-variable-keywords ((,class (:foreground ,var))))
-     `(font-latex-sectioning-0-face ((,class (:inherit bold :foreground ,head3 :height ,(if spacemacs-theme-org-height 1.3 1.0) :background ,(when spacemacs-theme-org-highlight head3-bg)))))
-     `(font-latex-sectioning-1-face ((,class (:inherit bold :foreground ,head4 :height ,(if spacemacs-theme-org-height 1.3 1.0) :background ,(when spacemacs-theme-org-highlight head4-bg)))))
-     `(font-latex-sectioning-2-face ((,class (:inherit bold :foreground ,head1 :height ,(if spacemacs-theme-org-height 1.3 1.0) :background ,(when spacemacs-theme-org-highlight head1-bg)))))
-     `(font-latex-sectioning-3-face ((,class (:inherit bold :foreground ,head2 :height ,(if spacemacs-theme-org-height 1.2 1.0) :background ,(when spacemacs-theme-org-highlight head2-bg)))))
-     `(font-latex-sectioning-4-face ((,class (:bold nil :foreground ,head3 :height ,(if spacemacs-theme-org-height 1.1 1.0) :background ,(when spacemacs-theme-org-highlight head3-bg)))))
-     `(font-latex-sectioning-5-face ((,class (:bold nil :foreground ,head4 :background ,(when spacemacs-theme-org-highlight head4-bg)))))
+     `(font-latex-sectioning-0-face ((,class (:inherit bold :foreground ,head3 :height ,(if vital-dark-theme-org-height 1.3 1.0) :background ,(when vital-dark-theme-org-highlight head3-bg)))))
+     `(font-latex-sectioning-1-face ((,class (:inherit bold :foreground ,head4 :height ,(if vital-dark-theme-org-height 1.3 1.0) :background ,(when vital-dark-theme-org-highlight head4-bg)))))
+     `(font-latex-sectioning-2-face ((,class (:inherit bold :foreground ,head1 :height ,(if vital-dark-theme-org-height 1.3 1.0) :background ,(when vital-dark-theme-org-highlight head1-bg)))))
+     `(font-latex-sectioning-3-face ((,class (:inherit bold :foreground ,head2 :height ,(if vital-dark-theme-org-height 1.2 1.0) :background ,(when vital-dark-theme-org-highlight head2-bg)))))
+     `(font-latex-sectioning-4-face ((,class (:bold nil :foreground ,head3 :height ,(if vital-dark-theme-org-height 1.1 1.0) :background ,(when vital-dark-theme-org-highlight head3-bg)))))
+     `(font-latex-sectioning-5-face ((,class (:bold nil :foreground ,head4 :background ,(when vital-dark-theme-org-highlight head4-bg)))))
      `(font-latex-string-face ((,class (:foreground ,str))))
 
 ;;;;; linum-mode
@@ -511,10 +513,10 @@
      `(Man-underline ((,class (:foreground ,comp :underline t))))
 
 ;;;;; markdown
-     `(markdown-header-face-1 ((,class (:inherit bold :foreground ,head1 :height ,(if spacemacs-theme-org-height 1.3 1.0) :background ,(when spacemacs-theme-org-highlight head1-bg)))))
-     `(markdown-header-face-2 ((,class (:inherit bold :foreground ,head2 :height ,(if spacemacs-theme-org-height 1.2 1.0) :background ,(when spacemacs-theme-org-highlight head2-bg)))))
-     `(markdown-header-face-3 ((,class (:bold nil :foreground ,head3 :height ,(if spacemacs-theme-org-height 1.1 1.0) :background ,(when spacemacs-theme-org-highlight head3-bg)))))
-     `(markdown-header-face-4 ((,class (:bold nil :foreground ,head4 :background ,(when spacemacs-theme-org-highlight head4-bg)))))
+     `(markdown-header-face-1 ((,class (:inherit bold :foreground ,head1 :height ,(if vital-dark-theme-org-height 1.3 1.0) :background ,(when vital-dark-theme-org-highlight head1-bg)))))
+     `(markdown-header-face-2 ((,class (:inherit bold :foreground ,head2 :height ,(if vital-dark-theme-org-height 1.2 1.0) :background ,(when vital-dark-theme-org-highlight head2-bg)))))
+     `(markdown-header-face-3 ((,class (:bold nil :foreground ,head3 :height ,(if vital-dark-theme-org-height 1.1 1.0) :background ,(when vital-dark-theme-org-highlight head3-bg)))))
+     `(markdown-header-face-4 ((,class (:bold nil :foreground ,head4 :background ,(when vital-dark-theme-org-highlight head4-bg)))))
      `(markdown-header-face-5 ((,class (:bold nil :foreground ,head1))))
      `(markdown-header-face-6 ((,class (:bold nil :foreground ,head2))))
 
@@ -539,10 +541,10 @@
 
 ;;;;; org
      `(org-agenda-clocking ((,class (:background ,highlight :foreground ,comp))))
-     `(org-agenda-date ((,class (:foreground ,var :height ,(if spacemacs-theme-org-height 1.1 1.0)))))
-     `(org-agenda-date-today ((,class (:foreground ,keyword :slant italic :inherit bold :height ,(if spacemacs-theme-org-height 1.3 1.0)))))
+     `(org-agenda-date ((,class (:foreground ,var :height ,(if vital-dark-theme-org-height 1.1 1.0)))))
+     `(org-agenda-date-today ((,class (:foreground ,keyword :slant italic :inherit bold :height ,(if vital-dark-theme-org-height 1.3 1.0)))))
      `(org-agenda-date-weekend ((,class (:inherit bold :foreground ,var))))
-     `(org-agenda-done ((,class (:foreground ,suc :height ,(if spacemacs-theme-org-height 1.2 1.0)))))
+     `(org-agenda-done ((,class (:foreground ,suc :height ,(if vital-dark-theme-org-height 1.2 1.0)))))
      `(org-agenda-structure ((,class (:inherit bold :foreground ,comp))))
      `(org-block ((,class (:background ,cblk-bg :foreground ,cblk))))
      `(org-block-begin-line ((,class (:background ,cblk-ln-bg :foreground ,cblk-ln))))
@@ -554,16 +556,16 @@
      `(org-date ((,class (:underline t :foreground ,var))))
      `(org-date-selected ((,class (:background ,func :foreground ,bg1))))
      `(org-document-info-keyword ((,class (:foreground ,meta))))
-     `(org-document-title ((,class (:foreground ,func :inherit bold :height ,(if spacemacs-theme-org-height 1.4 1.0) :underline t))))
+     `(org-document-title ((,class (:foreground ,func :inherit bold :height ,(if vital-dark-theme-org-height 1.4 1.0) :underline t))))
      `(org-done ((,class (:foreground ,suc :inherit bold :background ,green-bg))))
      `(org-ellipsis ((,class (:foreground ,keyword))))
      `(org-footnote  ((,class (:underline t :foreground ,base))))
      `(org-hide ((,class (:foreground ,base))))
      `(org-kbd ((,class (:inherit region :foreground ,base :box (:line-width 1 :style released-button)))))
-     `(org-level-1 ((,class (:inherit bold :foreground ,head1 :height ,(if spacemacs-theme-org-height 1.3 1.0) :background ,(when spacemacs-theme-org-highlight head1-bg)))))
-     `(org-level-2 ((,class (:inherit bold :foreground ,head2 :height ,(if spacemacs-theme-org-height 1.2 1.0) :background ,(when spacemacs-theme-org-highlight head2-bg)))))
-     `(org-level-3 ((,class (:bold nil :foreground ,head3 :height ,(if spacemacs-theme-org-height 1.1 1.0) :background ,(when spacemacs-theme-org-highlight head3-bg)))))
-     `(org-level-4 ((,class (:bold nil :foreground ,head4 :background ,(when spacemacs-theme-org-highlight head4-bg)))))
+     `(org-level-1 ((,class (:inherit bold :foreground ,head1 :height ,(if vital-dark-theme-org-height 1.3 1.0) :background ,(when vital-dark-theme-org-highlight head1-bg)))))
+     `(org-level-2 ((,class (:inherit bold :foreground ,head2 :height ,(if vital-dark-theme-org-height 1.2 1.0) :background ,(when vital-dark-theme-org-highlight head2-bg)))))
+     `(org-level-3 ((,class (:bold nil :foreground ,head3 :height ,(if vital-dark-theme-org-height 1.1 1.0) :background ,(when vital-dark-theme-org-highlight head3-bg)))))
+     `(org-level-4 ((,class (:bold nil :foreground ,head4 :background ,(when vital-dark-theme-org-highlight head4-bg)))))
      `(org-level-5 ((,class (:bold nil :foreground ,head1))))
      `(org-level-6 ((,class (:bold nil :foreground ,head2))))
      `(org-level-7 ((,class (:bold nil :foreground ,head3))))
@@ -574,7 +576,7 @@
      `(org-priority ((,class (:foreground ,war :inherit bold))))
      `(org-quote ((,class (:inherit org-block :slant italic))))
      `(org-scheduled ((,class (:foreground ,comp))))
-     `(org-scheduled-today ((,class (:foreground ,func :height ,(if spacemacs-theme-org-height 1.2 1.0)))))
+     `(org-scheduled-today ((,class (:foreground ,func :height ,(if vital-dark-theme-org-height 1.2 1.0)))))
      `(org-sexp-date ((,class (:foreground ,base))))
      `(org-special-keyword ((,class (:foreground ,func))))
      `(org-table ((,class (:foreground ,base :background ,head1-bg))))
@@ -633,8 +635,8 @@
      `(spaceline-flycheck-info   ((,class (:foreground ,keyword))))
      `(spaceline-flycheck-warning((,class (:foreground ,war))))
 
-;;;;; spacemacs-specific
-     `(spacemacs-transient-state-title-face ((,class (:background nil :foreground ,comp :box nil :inherit bold))))
+;;;;; vital-dark-specific
+     `(vital-dark-transient-state-title-face ((,class (:background nil :foreground ,comp :box nil :inherit bold))))
 
 ;;;;; swiper
      `(swiper-line-face ((,class (:background ,highlight :inherit bold))))
@@ -727,10 +729,10 @@
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory (file-name-directory load-file-name))))
 
-(provide 'spacemacs-common)
+(provide 'vital-dark-common)
 
 ;; Local Variables:
 ;; no-byte-compile: t
 ;; End:
 
-;;; spacemacs-common.el ends here
+;;; vital-dark-common.el ends here
